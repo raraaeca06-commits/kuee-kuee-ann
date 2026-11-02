@@ -1,0 +1,315 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Cake for Nanaa 💗</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(145deg, #ffe4ef, #fff5f8, #fbd4e4);
+  font-family: Georgia, serif;
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #bd668b;
+  font-size: clamp(27px, 7vw, 38px);
+  margin-bottom: 12px;
+  text-shadow: 0 3px 10px #e9a9c333;
+}
+
+.subtitle {
+  color: #c987a4;
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 35px;
+}
+
+.cake-stage {
+  height: 310px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  position: relative;
+  max-width: 360px;
+  margin: auto;
+}
+
+.cake-shadow {
+  position: absolute;
+  bottom: 8px;
+  width: 320px;
+  height: 22px;
+  border-radius: 50%;
+  background: #dca9c0;
+  filter: blur(11px);
+}
+
+.cake {
+  position: relative;
+  width: 300px;
+  height: 230px;
+  z-index: 2;
+}
+
+.layer-bottom {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  width: 300px;
+  height: 105px;
+  border-radius: 18px 18px 25px 25px;
+  background: linear-gradient(90deg, #e7a9c0, #ffe0e9 45%, #e9aec4);
+  box-shadow: inset 0 -10px 0 #d88eaa,
+  0 8px 15px #b96d8b30;
+}
+
+.layer-top {
+  position: absolute;
+  bottom: 105px;
+  left: 35px;
+  width: 230px;
+  height: 75px;
+  border-radius: 18px 18px 13px 13px;
+  background: linear-gradient(90deg, #fff0f5, #fff 48%, #f8dce7);
+  box-shadow: inset 0 -8px 0 #edbfd0;
+}
+
+.icing {
+  position: absolute;
+  bottom: 80px;
+  left: 35px;
+  width: 230px;
+  height: 35px;
+  background: #fff7fa;
+  clip-path: polygon(
+    0 0,100% 0,100% 70%,90% 100%,
+    80% 65%,68% 100%,55% 68%,
+    42% 100%,30% 68%,18% 100%,
+    8% 65%,0 90%
+  );
+  z-index: 2;
+}
+
+.cake-name {
+  position: absolute;
+  bottom: 49px;
+  width: 100%;
+  text-align: center;
+  color: #fff8fb;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-shadow: 1px 2px 4px #b66b89;
+  z-index: 5;
+}
+
+.strawberry {
+  position: absolute;
+  bottom: 177px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 29px;
+  z-index: 7;
+}
+
+.flower {
+  position: absolute;
+  bottom: 153px;
+  left: 65px;
+  font-size: 23px;
+  color: #e98caf;
+  z-index: 4;
+}
+
+.flower.right {
+  left: auto;
+  right: 65px;
+}
+
+.candle {
+  position: absolute;
+  bottom: 180px;
+  width: 10px;
+  height: 42px;
+  border-radius: 5px;
+  background: repeating-linear-gradient(
+    45deg, #fff 0 5px, #e99bb7 5px 10px
+  );
+  z-index: 6;
+}
+
+.candle.one { left: 105px; }
+.candle.two { left: 145px; }
+.candle.three { left: 185px; }
+
+.flame {
+  position: absolute;
+  bottom: 220px;
+  width: 14px;
+  height: 20px;
+  background: radial-gradient(
+    ellipse at 50% 70%,
+    #fff9bd 0 22%, #ffd16c 48%, #ff9e87 75%
+  );
+  border-radius: 70% 30% 65% 35%;
+  transform: rotate(45deg);
+  filter: drop-shadow(0 0 9px #ffc56c);
+  animation: flicker .8s infinite alternate;
+  z-index: 8;
+}
+
+.flame.one { left: 103px; }
+.flame.two { left: 143px; }
+.flame.three { left: 183px; }
+
+@keyframes flicker {
+  to {
+    transform: rotate(35deg) scale(.85);
+    filter: drop-shadow(0 0 14px #ffc56c);
+  }
+}
+
+.caption {
+  color: #bd668b;
+  font-size: 16px;
+  margin-top: 25px;
+  letter-spacing: 1px;
+}
+
+/* falling decorations */
+.falling {
+  position: fixed;
+  top: -35px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: .8;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-30px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: .85; }
+  85% { opacity: .75; }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* little sparkles */
+.sparkle {
+  position: fixed;
+  color: #fff;
+  font-size: 17px;
+  animation: twinkle 2s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: .3;
+    transform: scale(.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@media(max-width: 380px) {
+  .cake {
+    transform: scale(.88);
+    transform-origin: bottom center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="falling-area"></div>
+
+<div class="container">
+  <h1>happy birthday, nanaa! 💗</h1>
+  <div class="subtitle">a special day for someone special</div>
+
+  <div class="cake-stage">
+    <div class="cake-shadow"></div>
+
+    <div class="cake">
+      <div class="layer-bottom"></div>
+      <div class="layer-top"></div>
+      <div class="icing"></div>
+
+      <div class="cake-name">NANAA</div>
+
+      <span class="strawberry">🍓</span>
+      <span class="flower">✿</span>
+      <span class="flower right">✿</span>
+
+      <div class="candle one"></div>
+      <div class="candle two"></div>
+      <div class="candle three"></div>
+
+      <div class="flame one"></div>
+      <div class="flame two"></div>
+      <div class="flame three"></div>
+    </div>
+  </div>
+
+  <div class="caption">made with love, just for you 🎀</div>
+</div>
+
+<script>
+const area = document.getElementById("falling-area");
+const decorations = ["🌸", "💗", "✿", "♡", "✨", "🌷"];
+
+for (let i = 0; i < 28; i++) {
+  const item = document.createElement("span");
+  item.className = "falling";
+  item.textContent = decorations[
+    Math.floor(Math.random() * decorations.length)
+  ];
+
+  item.style.left = Math.random() * 100 + "vw";
+  item.style.fontSize = (12 + Math.random() * 13) + "px";
+  item.style.animationDuration = (7 + Math.random() * 9) + "s";
+  item.style.animationDelay = (-Math.random() * 15) + "s";
+
+  area.appendChild(item);
+}
+
+for (let i = 0; i < 12; i++) {
+  const star = document.createElement("span");
+  star.className = "sparkle";
+  star.textContent = "✧";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  area.appendChild(star);
+}
+</script>
+
+</body>
+</html>
